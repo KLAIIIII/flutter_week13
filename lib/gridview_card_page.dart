@@ -13,7 +13,7 @@ class GridviewPage extends StatelessWidget {
         child: GridView.count(
           crossAxisCount: 2,
           // children: List.generate(8, (index) => Card()),
-          children: List.generate(9, (index) {
+          children: List.generate(8, (index) {
             return Card(
               color: Colors.amberAccent,
               elevation: 6,
