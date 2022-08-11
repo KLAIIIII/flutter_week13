@@ -1,48 +1,57 @@
 import 'package:flutter/material.dart';
 
-class GridviewPage extends StatelessWidget {
-  const GridviewPage({Key? key}) : super(key: key);
+class Menu{
+  final String? title;
+  final IconData? icon;
+  final Color? bkColor;
+
+  Menu({this.title,this.icon,this.bkColor});
+}
+
+List<Menu> menus = [
+  Menu(title: "MENU-1",icon:Icons.person, bkColor: Colors.amberAccent),
+  Menu(title: "MENU-2",icon:Icons.person_add, bkColor: Colors.blue),
+  Menu(title: "MENU-3",icon:Icons.person_off, bkColor: Colors.lightGreen),
+];
+
+class GridViewPage extends StatelessWidget {
+  const GridViewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white70,
-      ),
+      appBar: AppBar(),
       body: Container(
         padding: EdgeInsets.all(8),
         child: GridView.count(
-          crossAxisCount: 3,
-          mainAxisSpacing: 15,
-          crossAxisSpacing: 15,
-          // children: List.generate(8, (index) => Card()),
-          children: List.generate(9, (index) {
-            return Card(
-              color: Colors.amberAccent,
-              elevation: 6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20)
-                )
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+            crossAxisCount: menus.length,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            // children: List.generate(9, (index) => Card()),
+            children: List.generate(menus.length, (index) {
+              return Card(
+                color: menus[index].bkColor,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(20)
+                    )
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.person, size: 75,color: Colors.white70),
-                    Text("Menu-1",style: TextStyle(color: Colors.white70,),)
-                  ],
+                child: InkWell(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(menus[index].icon,size: 65,color: Colors.white),
+                      Text(menus[index].title!,style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                  onTap: () {},
                 ),
-                onTap: (){
-
-                },
-              ),
-              
-            );
-          }),
+              );
+            })
         ),
       ),
     );
